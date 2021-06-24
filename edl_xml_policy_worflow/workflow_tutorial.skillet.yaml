@@ -1,0 +1,117 @@
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: workflow_xml_edl_policy
+# label used for menu selection
+label: Sample SkilletBuilder workflow for EDL validation and configuration
+description: Used by SkilletBuilder to demonstrate chaining skillets together as workflow solutions.
+
+# type of device configuration
+# common types are panorama, panos, and template
+# https://github.com/PaloAltoNetworks/panhandler/blob/develop/docs/metadata_configuration.rst
+type: workflow
+# preload static or default-based templates
+extends:
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  collection:
+    - Skillet Builder
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+# variables used in the configuration templates
+# type_hint defines the form field used by panhandler
+# type_hints examples include text, ip_address, or dropdown
+variables:
+  - name: hostname
+    description: Firewall hostname
+    default: myFirewall
+    type_hint: text
+  - name: choices
+    description: sample dropdown list
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: option1
+        value: option1
+      - key: option2
+        value: option2
+  - name: snippets
+    type_hint: hidden
+    default: ''
+
+    # variables section
+# ---------------------------------------------------------------------
+# variables used in the configuration templates
+# type_hint defines the form field used by panhandler
+# type_hints examples include text, ip_address, or dropdown
+variables:
+  - name: TARGET_IP
+    description: NGFW IP or Hostname
+    default: 192.168.55.10
+    type_hint: fqdn_or_ip
+  - name: TARGET_USERNAME
+    description: NGFW Username
+    default: admin
+    type_hint: text
+  - name: TARGET_PASSWORD
+    description: NGFW Password
+    default: admin
+    type_hint: password
+
+  - name: edl_url
+    description: External Dynamic List's Source URL
+    default: http://someurl.com
+    type_hint: text
+
+  - name: assess_options
+    description: Config Validation Options
+    default: []
+    type_hint: checkbox
+    cbx_list:
+      - key: Validate configuration at the beginning of the workflow
+        value: run_validation_begin
+      - key: Validate configuration at the end of the workflow
+        value: run_validation_end
+
+
+# ---------------------------------------------------------------------
+# end of variables section
+# ---------------------------------------------------------------------
+# end of variables section
+
+# snippets section
+# ---------------------------------------------------------------------
+snippets:
+# sample workflow structure with named skillets
+# when conditional is used to determine if a skillet should be played
+  - name: homeskillet_base_panos_v90_5fdbc623-2891-4937-a577-d0aea59065cc
+# post step 1 validation to ensure last step dependencies are met
+  - name: validate-HomeSkillet-step2-e2c42c6d-a896-4445-8528-fd55a401850b
+# grab list of interfaces
+  - name: get_interface_lists_812E106E-EF84-48CC-A2CB-96F9D7DA7296
+    when: "'load_step2' in workflow_options"
+
+# snippets section
+# ---------------------------------------------------------------------
+snippets:
+    # Run the validation skillet if the user checks the checkbox
+  - name: validate_xml_edl_policy
+    when: "'run_validation_begin' in assess_options"
+
+  - name: config_xml_edl_policy
+
+    # Run the validation skillet if the user checks the checkbox
+  - name: validate_xml_edl_policy
+    when: "'run_validation_end' in assess_options"
+
+    # Finish with output message of completion to the user
+  - name: template_xml_edl_policy
+# ---------------------------------------------------------------------
+# end of snippets section
+# ---------------------------------------------------------------------
+# end of snippets section
