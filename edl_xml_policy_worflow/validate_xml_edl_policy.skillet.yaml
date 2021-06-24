@@ -1,7 +1,7 @@
 # skillet preamble information used by panhandler
 # ---------------------------------------------------------------------
 # unique snippet name
-name: validate_xml_edl_policy
+name: validate_xml_edl_policy1
 # label used for menu selection
 label: Sample SkilletBuilder validation for EDL, tag, and security policy
 description: |
