@@ -1,7 +1,7 @@
 # skillet preamble information used by panhandler
 # ---------------------------------------------------------------------
 # unique snippet name
-name: config_xml_edl_policy
+name: config_xml_edl_policy1
 # label used for menu selection
 label: Sample SkilletBuilder skillet with EDL, tag, and security policy
 description: Used by SkilletBuilder to demonstrate skillet creation and loading and cross-element variables

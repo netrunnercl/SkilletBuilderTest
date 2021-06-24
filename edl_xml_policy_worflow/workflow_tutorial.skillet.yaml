@@ -1,7 +1,7 @@
 # skillet preamble information used by panhandler
 # ---------------------------------------------------------------------
 # unique snippet name
-name: workflow_xml_edl_policy
+name: workflow_xml_edl_policy1
 # label used for menu selection
 label: Sample SkilletBuilder workflow for EDL validation and configuration
 description: Used by SkilletBuilder to demonstrate chaining skillets together as workflow solutions.
@@ -100,17 +100,17 @@ snippets:
 # ---------------------------------------------------------------------
 snippets:
     # Run the validation skillet if the user checks the checkbox
-  - name: validate_xml_edl_policy
+  - name: validate_xml_edl_policy1
     when: "'run_validation_begin' in assess_options"
 
-  - name: config_xml_edl_policy
+  - name: config_xml_edl_policy1
 
     # Run the validation skillet if the user checks the checkbox
-  - name: validate_xml_edl_policy
+  - name: validate_xml_edl_policy1
     when: "'run_validation_end' in assess_options"
 
     # Finish with output message of completion to the user
-  - name: template_xml_edl_policy
+  - name: template_xml_edl_policy1
 # ---------------------------------------------------------------------
 # end of snippets section
 # ---------------------------------------------------------------------
