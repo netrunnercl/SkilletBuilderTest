@@ -103,6 +103,7 @@ snippets:
       (
       interface_management_profile_ext | element_value('https') == 'yes'
       and interface_management_profile_ext | element_value('ssh') == 'yes'
+      and interface_management_profile_ext | element_value('ping') == 'yes'
       )
     fail_message: recommended interface management profile IMP-ExtMgmt
     documentation_link: https://iron-skillet
