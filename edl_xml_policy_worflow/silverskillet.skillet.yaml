@@ -128,14 +128,14 @@ snippets:
 
   - name: dns_proxy_a
     label: Guest DNS proxy is configured
-    test: dns_proxy | attribute_present('entry', 'name', 'Guest_DNS')
+    test: dns_proxy | attribute_present('entry', 'name', 'Guest DNS')
     fail_mesage: |
       A dns proxy profile called Guest_DNS is checked.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
 
   - name: dns_proxy_b
     label: Guest DNS proxy is configured
-    test: dns_proxy | attribute_present('entry', 'name', 'Trust_DNS')
+    test: dns_proxy | attribute_present('entry', 'name', 'Trust DNS')
     fail_mesage: |
       A dns proxy profile called Trust_DNS is checked.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
