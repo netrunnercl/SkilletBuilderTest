@@ -22,6 +22,8 @@ snippets:
       # capture all the xml elements referenced for validations using the full config file
       - name: interface_management_profile
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/interface-management-profile
+      - name: interface_management_profile_allowping
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/interface-management-profile/entry[@name='IMP-AllowPing']         
       - name: interface_management_profile_ext
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/interface-management-profile/entry[@name='IMP-ExtMgmt']        
       - name: netflow_profile
@@ -95,9 +97,27 @@ snippets:
     fail_mesage: |
       A interface management profile called IMP-ExtMgmt is checked.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
- 
 
-  - name: interface_management_multicheck
+  - name: interface_management_multicheck_allowping
+    label: Interface Management Profile IMP-AllowPing check
+    test: |
+      (
+      interface_management_profile_allowping | element_value('http') == 'no'
+      and interface_management_profile_allowping | element_value('https') == 'no'
+      and interface_management_profile_allowping | element_value('http-ocsp') == 'no'
+      and interface_management_profile_allowping | element_value('ssh') == 'no'
+      and interface_management_profile_allowping | element_value('snmp') == 'no'
+      and interface_management_profile_allowping | element_value('userid-service') == 'no'
+      and interface_management_profile_allowping | element_value('ping') == 'yes'
+      and interface_management_profile_allowping | element_value('response-pages') == 'no'
+      and interface_management_profile_allowping | element_value('telnet') == 'no'
+      )
+    fail_message: recommended interface management profile AllowPing
+    documentation_link: https://iron-skillet
+
+
+
+  - name: interface_management_multicheck_ext
     label: Interface Management Profile IMP-ExtMgmt check
     test: |
       (
