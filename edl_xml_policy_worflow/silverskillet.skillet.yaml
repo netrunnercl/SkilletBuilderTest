@@ -28,6 +28,8 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/interface-management-profile/entry[@name='IMP-ExtMgmt']        
       - name: netflow_profile
         capture_object: /config/shared/server-profile/netflow
+      - name: netflow_profile_ontex
+        capture_object: /config/shared/server-profile/netflow/entry[@name='netflow.ontex.net']       
       - name: snmp_version
         capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/snmp-setting/access-setting/version
       - name: dns_servers
@@ -135,6 +137,23 @@ snippets:
     fail_mesage: |
       A netflow profile called netflow.ontex.net is checked.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
+    
+    
+    
+  - name: netflow_profile_ontex
+    label: netflow_profile_ontex check
+    test: |
+      (
+      netflow_profile_ontex | element_value('active-timeout') == '5'
+      and netflow_profile_ontex| element_value('active-timeout') == '5'
+      and netflow_profile_ontex | element_value('active-timeout') == '5'
+      )
+    fail_message: netfloxprofile
+    documentation_link: https://iron-skillet
+    
+    
+    
+    
 
   - name: snmp_v2
     label: SNMPv2 
