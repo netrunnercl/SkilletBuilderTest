@@ -44,6 +44,8 @@ snippets:
         capture_object: /config/mgt-config/password-complexity
       - name: zone_protect_profile
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
+      - name: zone_protect_profile_zpuntrust
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile/entry[@name='ZP-Untrust'] 
       - name: dns_proxy
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/dns-proxy
       - name: ike_crypto_profiles
@@ -145,7 +147,7 @@ snippets:
     test: |
       (
       netflow_profile_ontex | element_value('template-refresh-rate.minutes') == '30'
-      and netflow_profile_ontex| element_value('template-refresh-rate.packets') == '21'
+      and netflow_profile_ontex| element_value('template-refresh-rate.packets') == '20'
       and netflow_profile_ontex | element_value('active-timeout') == '5'
       )
     fail_message: netfloxprofile
@@ -213,6 +215,24 @@ snippets:
       A Zone Protection profile applied to a zone offers protection against most common floods, reconnaissance attacks,
       other packet-based attacks, and the use of non-IP protocols.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
+    
+    
+
+
+
+  - name: zone_protect_profile_zpuntrust
+    label: zone_protect_profile_zpuntrust check
+    test: |
+      (
+      zone_protect_profile_zpuntrust | element_value('flood.other-ip.enable') == 'no'
+      and zone_protect_profile_zpuntrust| element_value('flood.icmpv6.enable') == 'no'
+      and zone_protect_profile_zpuntrust | element_value('ipv6.filter-ext-hdr.hop-by-hop-hdr') == 'no'
+      )
+    fail_message: netfloxprofile
+    documentation_link: https://iron-skillet
+    
+    
+    
 
   - name: dns_proxy_a
     label: Guest DNS proxy is configured
