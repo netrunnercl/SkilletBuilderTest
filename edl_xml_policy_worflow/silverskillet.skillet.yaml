@@ -2,7 +2,7 @@ name: validate-SilverSkillet
 label: Full NGFW configuration assessment based on SilverSkillet
 
 description: |
-  This skillet does a full NGFW validation of IronSkillet day one configuration - panos v9.0
+  This skillet does a validation of Ontex confiuration
   Any missing config elements will result in a test fail and the doc links will provide
   GUI pointers for remediation
 type: pan_validation
@@ -101,9 +101,6 @@ snippets:
       A netflow profile called netflow.ontex.net is checked.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
 
-
-
-
   - name: snmp_v2
     label: SNMPv2 
     test: snmp_version | tag_present('v2c')
@@ -155,7 +152,6 @@ snippets:
       - name: device_setting
         capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
 
-
   - name: zone_protect_profile
     label: ZP-Untrust zone protection is configured
     test: zone_protect_profile | attribute_present('entry', 'name', 'ZP-Untrust')
@@ -163,7 +159,6 @@ snippets:
       A Zone Protection profile applied to a zone offers protection against most common floods, reconnaissance attacks,
       other packet-based attacks, and the use of non-IP protocols.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
-
 
   - name: dns_proxy_a
     label: Guest DNS proxy is configured
@@ -178,9 +173,6 @@ snippets:
     fail_mesage: |
       A dns proxy profile called Trust_DNS is checked.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
-
-
-
 
 
 # sectional grouping for logging, alerts, and reporting
