@@ -66,16 +66,16 @@ snippets:
       ipsec-crypto-profiles Suite-B-GCM-128 is checked.
     documentation_link: https://iron-skille
     
-  - name: ipsec-crypto-profiles_b
+  - name: ipsec_crypto_profiles_b
     label: ipsec-crypto-profiles Suite-B-GCM-256 is configured
-    test: ipsec-crypto-profiles | attribute_present('entry', 'name', 'Suite-B-GCM-256')
+    test: ipsec_crypto_profiles | attribute_present('entry', 'name', 'Suite-B-GCM-256')
     fail_mesage: |
       ipsec-crypto-profiles Suite-B-GCM-256 is checked.
     documentation_link: https://iron-skille
   
-  - name: ipsec-crypto-profiles_c
+  - name: ipsec_crypto_profiles_c
     label: ipsec-crypto-profiles ESP-256-SHA512-DH14-3600 is configured
-    test: ipsec-crypto-profiles | attribute_present('entry', 'name', 'ESP-256-SHA512-DH14-3600')
+    test: ipsec_crypto_profiles | attribute_present('entry', 'name', 'ESP-256-SHA512-DH14-3600')
     fail_mesage: |
       ipsec-crypto-profiles ESP-256-SHA512-DH14-3600 is checked.
     documentation_link: https://iron-skille  
