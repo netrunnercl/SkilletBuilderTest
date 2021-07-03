@@ -40,28 +40,28 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
       - name: dns_proxy
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/dns-proxy
-      - name: ike-crypto-profiles
+      - name: ike_crypto_profiles
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/ike/crypto-profiles/ike-crypto-profiles
-      - name: ipsec-crypto-profiles
+      - name: ipsec_crypto_profiles
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/ike/crypto-profiles/ipsec-crypto-profiles
 
-  - name: ike-crypto-profiles_a
+  - name: ike_crypto_profiles_a
     label: ike-crypto-profiles Suite-B-GCM-128 is configured
-    test: ike-crypto-profiles | attribute_present('entry', 'name', 'Suite-B-GCM-128')
+    test: ike_crypto_profiles | attribute_present('entry', 'name', 'Suite-B-GCM-128')
     fail_mesage: |
       Suite-B-GCM-128 is checked.
     documentation_link: https://iron-skille
 
-  - name: ike-crypto-profiles_b
+  - name: ike_crypto_profiles_b
     label: ike-crypto-profiles DH14-512-SHA2-28800 is configured
-    test: ike-crypto-profiles | attribute_present('entry', 'name', 'DH14-512-SHA2-28800')
+    test: ike_crypto_profiles | attribute_present('entry', 'name', 'DH14-512-SHA2-28800')
     fail_mesage: |
       DH14-512-SHA2-28800 is checked.
     documentation_link: https://iron-skille
 
-  - name: ipsec-crypto-profiles_a
+  - name: ipsec_crypto_profiles_a
     label: ipsec-crypto-profiles Suite-B-GCM-128 is configured
-    test: ipsec-crypto-profiles | attribute_present('entry', 'name', 'Suite-B-GCM-128')
+    test: ipsec_crypto_profiles | attribute_present('entry', 'name', 'Suite-B-GCM-128')
     fail_mesage: |
       ipsec-crypto-profiles Suite-B-GCM-128 is checked.
     documentation_link: https://iron-skille
