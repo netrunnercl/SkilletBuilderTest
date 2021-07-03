@@ -20,6 +20,8 @@ snippets:
     variable: config
     outputs:
       # capture all the xml elements referenced for validations using the full config file
+      - name: interface_management_profile
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/interface-management-profile
       - name: snmp_version
         capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/snmp-setting/access-setting/version
       - name: dns_servers
@@ -34,6 +36,13 @@ snippets:
         capture_object: /config/mgt-config/password-complexity
       - name: zone_protect_profile
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
+
+  - name: interface_management_profile
+    label: Interface Management Profile is configured
+    test: zone_protect_profile | attribute_present('entry', 'name', 'IMP-AllowPing')
+    fail_mesage: |
+      A interface management profile called IMP-AllowPing is checked.
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
 
 
   - name: snmp_v3
