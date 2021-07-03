@@ -89,8 +89,8 @@ snippets:
 
 
   - name: zone_protect_profile
-    label: recommended zone protection is configured
-    test: zone_protect_profile | attribute_present('entry', 'name', 'Recommended_Zone_Protection')
+    label: ZP-Untrust zone protection is configured
+    test: zone_protect_profile | attribute_present('entry', 'name', 'ZP-Untrust')
     fail_mesage: |
       A Zone Protection profile applied to a zone offers protection against most common floods, reconnaissance attacks,
       other packet-based attacks, and the use of non-IP protocols.
