@@ -39,7 +39,7 @@ snippets:
 
   - name: interface_management_profile
     label: Interface Management Profile is configured
-    test: zone_protect_profile | attribute_present('entry', 'name', 'IMP-AllowPing')
+    test: interface_management_profile | attribute_present('entry', 'name', 'IMP-AllowPing')
     fail_mesage: |
       A interface management profile called IMP-AllowPing is checked.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
