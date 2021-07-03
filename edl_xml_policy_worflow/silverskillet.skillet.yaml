@@ -104,11 +104,11 @@ snippets:
 
 
 
-  - name: snmp_v3
-    label: SNMPv3 instead of older versions
-    test: snmp_version | tag_present('v3')
+  - name: snmp_v2
+    label: SNMPv2 
+    test: snmp_version | tag_present('v2c')
     fail_message: |
-      when using SNMP for polling and alerts use the latest v3 version in tandem with secure access credentials.
+      when using SNMP for polling and alerts use the latest v2 version in tandem with secure access credentials.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#device-setup-operations-snmp-setup
 
   - name: dns_servers
