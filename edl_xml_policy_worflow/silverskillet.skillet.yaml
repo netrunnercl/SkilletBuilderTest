@@ -144,8 +144,8 @@ snippets:
     label: netflow_profile_ontex check
     test: |
       (
-      netflow_profile_ontex | element_value('active-timeout') == '5'
-      and netflow_profile_ontex| element_value('active-timeout') == '5'
+      netflow_profile_ontex | element_value('template-refresh-rate.minutes') == '30'
+      and netflow_profile_ontex| element_value('template-refresh-rate.packets') == '20'
       and netflow_profile_ontex | element_value('active-timeout') == '5'
       )
     fail_message: netfloxprofile
