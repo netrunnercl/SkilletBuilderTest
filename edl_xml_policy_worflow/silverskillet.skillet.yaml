@@ -37,14 +37,14 @@ snippets:
       - name: zone_protect_profile
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
 
-  - name: interface_management_profile
+  - name: interface_management_profile_a
     label: Interface Management Profile IMP-AllowPing is configured
     test: interface_management_profile | attribute_present('entry', 'name', 'IMP-AllowPing')
     fail_mesage: |
       A interface management profile called IMP-AllowPing is checked.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
 
-  - name: interface_management_profile
+  - name: interface_management_profile_b
     label: Interface Management Profile IMP-ExtMgmt is configured
     test: interface_management_profile | attribute_present('entry', 'name', 'IMP-ExtMgmt')
     fail_mesage: |
