@@ -125,6 +125,25 @@ snippets:
       other packet-based attacks, and the use of non-IP protocols.
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
 
+
+  - name: dns_proxy_a
+    label: Guest DNS proxy is configured
+    test: dns_proxy | attribute_present('entry', 'name', 'Guest_DNS')
+    fail_mesage: |
+      A dns proxy profile called Guest_DNS is checked.
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
+
+  - name: dns_proxy_b
+    label: Guest DNS proxy is configured
+    test: dns_proxy | attribute_present('entry', 'name', 'Trust_DNS')
+    fail_mesage: |
+      A dns proxy profile called Trust_DNS is checked.
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
+
+
+
+
+
 # sectional grouping for logging, alerts, and reporting
   - name: notifications
     cmd: parse
@@ -202,17 +221,3 @@ snippets:
     fail_message: email scheduling for reports is not currently configured
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#monitor-pdf-reports-email-scheduler
     
-  - name: dns_proxy_a
-    label: Guest DNS proxy is configured
-    test: dns_proxy | attribute_present('entry', 'name', 'Guest_DNS')
-    fail_mesage: |
-      A dns proxy profile called Guest_DNS is checked.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
-
-  - name: dns_proxy_b
-    label: Guest DNS proxy is configured
-    test: dns_proxy | attribute_present('entry', 'name', 'Trust_DNS')
-    fail_mesage: |
-      A dns proxy profile called Trust_DNS is checked.
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/viz_guide_panos.html#zone-protection
-
