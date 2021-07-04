@@ -12,6 +12,13 @@ labels:
     - Validation
 
 variables:
+  - name: qos_class
+    description: QoS Class to Check
+    default: class4
+    type_hint: text
+    help_text: Which class to ensure has at least one valid profile configured for it
+
+
 
 snippets:
 
