@@ -272,6 +272,11 @@ snippets:
        and network_vr | attribute_present('entry', 'name', '{{ local_isp_vr }}')
        and network_vr | attribute_present('entry', 'name', '{{ expereo_isp_vr }}')
        )
+    fail_message: |
+      All three virtuarl routers required are not present {{ main_vr }} {{ local_isp_vr }} {{ expereo_isp_vr }}
+    pass_message: |
+      All three virtuarl routers required are present {{ main_vr }} {{ local_isp_vr }} {{ expereo_isp_vr }}
+    documentation_link: 
 
 
 ################################################################################
