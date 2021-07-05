@@ -265,7 +265,7 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
         
   - name: network_vrs
-    label: check all 3 virtual routers are set: main local isp and expereo
+    label: check all 3 virtual routers as main local isp and expereo
     test: |
        (
        network_vr | attribute_present('entry', 'name', '{{ main_vr }}')
