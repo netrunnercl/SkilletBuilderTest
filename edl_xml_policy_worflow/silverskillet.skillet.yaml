@@ -255,9 +255,24 @@ snippets:
        device_setting | tag_present('snmp-setting.snmp-system.location')
        and device_setting | tag_present('snmp-setting.snmp-system.contact')
        )
+###############################################################################
+  # the test checks use the dot notation to walk down the object tree to find children and values
+  - name: device_network_vr
+    cmd: parse
+    variable: config
+    outputs:
+      - name: network_vr
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
+        
+  - name: network_vrs
+    label: check all virtual routers are set
+    test: |
+       (
+       network_vr | attribute_present('entry', 'name', 'VR-MIL1')
+       )
 
 
-
+################################################################################
   - name: zone_protect_profile
     label: ZP-Untrust zone protection is configured
     test: zone_protect_profile | attribute_present('entry', 'name', 'ZP-Untrust')
