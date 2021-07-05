@@ -268,9 +268,9 @@ snippets:
     label: check all virtual routers are set
     test: |
        (
-       network_vr | attribute_present('entry', 'name', 'VR-MIL1')
-       and network_vr | attribute_present('entry', 'name', 'VR-MIL1-ISP1')
-       and network_vr | attribute_present('entry', 'name', 'VR-MIL1-ISP2')
+       network_vr | attribute_present('entry', 'name', '{{ main_vr }}')
+       and network_vr | attribute_present('entry', 'name', '{{ local_isp_vr }}')
+       and network_vr | attribute_present('entry', 'name', '{{ expereo_isp_vr }}')
        )
 
 
