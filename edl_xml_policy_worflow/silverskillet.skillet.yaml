@@ -159,11 +159,7 @@ snippets:
       )
     fail_message: netfloxprofile
     documentation_link: https://iron-skillet
-    
-    
-    
-    
-
+     
   - name: snmp_v2
     label: SNMPv2 
     test: snmp_version | tag_present('v2c')
@@ -215,13 +211,23 @@ snippets:
       - name: device_setting
         capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
         
-  - name: device_settings_updates_check
-    label: check all update schedules
+  - name: device_settings_latitude
+    label: check all latitude and longitude are set
     test: |
        (
        device_setting | tag_present('geo-location.latitude')
        and device_setting | tag_present('geo-location.longitude')
        )
+
+  - name: device_location_contact
+    label: check location and contact are set
+    test: |
+       (
+       device_setting | tag_present('snmp-setting.snmp-system.location')
+       and device_setting | tag_present('snmp-setting.snmp-system.contact')
+       )
+
+
 
   - name: zone_protect_profile
     label: ZP-Untrust zone protection is configured
