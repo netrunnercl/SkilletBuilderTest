@@ -269,6 +269,8 @@ snippets:
     test: |
        (
        network_vr | attribute_present('entry', 'name', 'VR-MIL1')
+       and network_vr | attribute_present('entry', 'name', 'VR-MIL1-ISP1')
+       network_vr | attribute_present('entry', 'name', 'VR-MIL1-ISP2')
        )
 
 
