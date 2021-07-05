@@ -12,11 +12,11 @@ labels:
     - Validation
 
 variables:
-  - name: qos_class
-    description: QoS Class to Check
-    default: class4
+  - name: hostname
+    description: Hostname to check
+    default: IT-MIL1-FW0001
     type_hint: text
-    help_text: Which class to ensure has at least one valid profile configured for it
+    help_text: Which hostname to check
 
 
 
@@ -213,7 +213,15 @@ snippets:
     variable: config
     outputs:
       - name: device_setting
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+        
+  - name: device_settings_updates_check
+    label: check all update schedules
+    test: |
+       (
+       device_setting | tag_present('geo-location.latitude')
+       and device_setting | tag_present('geo-location.longitude')
+       )
 
   - name: zone_protect_profile
     label: ZP-Untrust zone protection is configured
