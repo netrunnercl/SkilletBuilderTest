@@ -18,7 +18,36 @@ variables:
     type_hint: text
     help_text: Which hostname to check
 
+  - name: local_isp_interface
+    description: Local ISP Interface
+    default: ethernet1/1
+    type_hint: text
+    help_text: Interface associated to local ISP
 
+  - name: expereo_isp_interface
+    description: Expereo Interface to check
+    default: ethernet1/5
+    type_hint: text
+    help_text: Which hostname to check
+    
+  - name: main_vr
+    description: Main Virtual Router
+    default: VR-MIL1
+    type_hint: text
+    help_text: Which hostname to check
+
+  - name: local_isp_vr
+    description: Local Virtual Router
+    default: VR-MIL1-ISP1
+    type_hint: text
+    help_text: Local ISP
+    
+
+  - name: expereo_isp_vr
+    description: Expereo Virtual Router
+    default: VR-MIL1-ISP2
+    type_hint: text
+    help_text: Expereo ISP to check
 
 snippets:
 
