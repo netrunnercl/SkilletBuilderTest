@@ -25,6 +25,18 @@ variables:
     description: IP Address to locate
     default: 217.56.70.190/29
     type_hint: text
+  # virtual router
+  - name: virtual_router
+    description: virtual router to check
+    default: VR-MIL1
+    type_hint: text
+  # interface_vr_isp1
+  - name: interface_vr_isp1
+    description: interface on isp1
+    default: ethernet1/5
+    type_hint: text
+
+
 
 snippets:
   - name: parse config variable and capture outputs
@@ -40,6 +52,9 @@ snippets:
       # the full interface definition from the interface that contains the 'ip_to_find' value
       - name: interface_with_ip
         capture_object: /config/devices/entry/network/interface/ethernet//entry/layer3/ip/entry[@name="{{ ip_to_find }}"]/../..
+      #####
+      - name: interfaces_vr_isp1
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router }}']/interface
 
   # simple test using a jinja expression to verify the 'zone_to_test' variable is not in the 'zone_names' test
   - name: ensure_desired_zone_absent_from_list
@@ -79,6 +94,12 @@ snippets:
     pass_message: |
       All three virtual routers required are present: {{ main_vr }}, {{ local_isp_vr }}, {{ expereo_isp_vr }}
     documentation_link: 
+
+
+  - name: vr_isp1
+    label: check virtual routers isp1 contain interface mentioned
+    test: interface_vr_isp1 in interfaces_vr_isp1
+
 
 
 ################################################################################
