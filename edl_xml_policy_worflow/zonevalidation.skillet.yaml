@@ -56,3 +56,29 @@ snippets:
       captured values were: {{ zone_names | tojson() }} and {{ interface_with_ip | default('none')| tojson() }}
     # documentation link helps give the user some context about why this test failed or how to manually remediate
     documentation_link: https://github.com/PaloAltoNetworks/skilletlib/blob/develop/docs/source/examples.rst
+    
+###############################################################################
+  # the test checks use the dot notation to walk down the object tree to find children and values
+  - name: device_network_vr
+    cmd: parse
+    variable: config
+    outputs:
+      - name: network_vr
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
+        
+  - name: network_vrs
+    label: check all 3 virtual routers as main local isp and expereo
+    test: |
+       (
+       network_vr | attribute_present('entry', 'name', '{{ main_vr }}')
+       and network_vr | attribute_present('entry', 'name', '{{ local_isp_vr }}')
+       and network_vr | attribute_present('entry', 'name', '{{ expereo_isp_vr }}')
+       )
+    fail_message: |
+      All three virtual routers required are not present: {{ main_vr }}, {{ local_isp_vr }}, {{ expereo_isp_vr }}
+    pass_message: |
+      All three virtual routers required are present: {{ main_vr }}, {{ local_isp_vr }}, {{ expereo_isp_vr }}
+    documentation_link: 
+
+
+################################################################################
