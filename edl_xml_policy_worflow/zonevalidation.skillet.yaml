@@ -54,7 +54,7 @@ snippets:
         capture_object: /config/devices/entry/network/interface/ethernet//entry/layer3/ip/entry[@name="{{ ip_to_find }}"]/../..
       #####
       - name: interfaces_vr_isp1
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router }}']/interface
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router }}']/interface/member
 
   # simple test using a jinja expression to verify the 'zone_to_test' variable is not in the 'zone_names' test
   - name: ensure_desired_zone_absent_from_list
