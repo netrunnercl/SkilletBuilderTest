@@ -98,7 +98,7 @@ snippets:
 
   - name: vr_isp1
     label: check virtual routers isp1 contain interface mentioned
-    test: interface_vr_isp1 in interfaces_vr_isp1
+    test: interface_vr_isp1 in interfaces_vr_isp1 
     fail_message: |
       All three virtual routers required are not present: {{ interface_vr_isp1 }}, {{ interfaces_vr_isp1 }}, {{ virtual_router }}
     pass_message: |
