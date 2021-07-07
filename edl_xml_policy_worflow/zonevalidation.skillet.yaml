@@ -35,6 +35,16 @@ variables:
     description: interface on isp1
     default: ethernet1/5
     type_hint: text
+  # virtual router ISP2
+  - name: virtual_router_isp2
+    description: virtual router ISP2 to check
+    default: VR-MIL1-ISP2
+    type_hint: text
+  # interface_vr_isp2
+  - name: interface_vr_isp2
+    description: interface on isp2
+    default: ethernet1/4
+    type_hint: text
 
 
 
@@ -55,6 +65,10 @@ snippets:
       #####
       - name: interfaces_vr_isp1
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router }}']/interface
+      - name: interfaces_vr_isp2
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/interface
+
+
 
   # simple test using a jinja expression to verify the 'zone_to_test' variable is not in the 'zone_names' test
   - name: ensure_desired_zone_present_from_list
@@ -97,12 +111,20 @@ snippets:
 
 
   - name: vr_isp1
-    label: check virtual routers isp1 contain interface mentioned
+    label: check virtual router isp1 contains interface {{ interface_vr_isp1 }}
     test: interfaces_vr_isp1 | element_value_contains('interface.member', interface_vr_isp1)  
     fail_message: |
-      All three virtual routers required are not present: {{ interface_vr_isp1 }}, {{ interfaces_vr_isp1 }}, {{ virtual_router }}
+      Virtual router ISP1 does not contain Interface ISP1: {{ interface_vr_isp1 }}, {{ interfaces_vr_isp1 }}, {{ virtual_router }}
     pass_message: |
-      All three virtual routers required are present: {{ interface_vr_isp1 }}, {{ interfaces_vr_isp1 }}, {{ virtual_router }}
+      Virtual router ISP contains Interface ISP1: {{ interface_vr_isp1 }}, {{ interfaces_vr_isp1 }}, {{ virtual_router }}
 
+
+  - name: vr_isp2
+    label: check virtual router isp2 contains interface {{ interface_vr_isp2 }}
+    test: interfaces_vr_isp2 | element_value_contains('interface.member', interface_vr_isp2)  
+    fail_message: |
+      Virtual router ISP2 does not contain Interface ISP2: {{ interface_vr_isp2 }}, {{ interfaces_vr_isp2 }}, {{ virtual_router }}
+    pass_message: |
+      Virtual router ISP2 contains Interface ISP2: {{ interface_vr_isp2 }}, {{ interfaces_vr_isp2 }}, {{ virtual_router }}
 
 ################################################################################
