@@ -98,7 +98,7 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_main }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']
       - name: main_default_isp2
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_main }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']
-      ##### Default route VR ISP1
+      ##### Default route VR-ISP1 Default_ISP1
       - name: vr_isp1_default_isp1
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']
       - name: vr_isp1_default_isp1_monitor1
@@ -115,9 +115,7 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']/path-monitor/monitor-destinations/entry[@name='CloudFare2']
       - name: vr_isp1_default_isp1_monitor6a
         capture_value: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']/path-monitor/monitor-destinations/entry[@name='CloudFare2']
-
-
-
+      ##### Default route VR-ISP1 Default_ISP2
       - name: vr_isp1_default_isp2
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']
       ##### Default route VR ISP2
@@ -326,6 +324,52 @@ snippets:
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
                            {{ vr_isp1_default_isp1 }}
 
+################################################################################################
+#########################    VR-ISP1 Default_ISP2 settings    ##################################
+#########################                                     ##################################
+
+
+  # check default ISP routes on VR-ISP1 & VR-ISP2
+  # Default_ISP1 metric 10
+  # Default_ISP2 metric 20
+  # /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='VR-MIL1-ISP1']/routing-table/ip/static-route/entry[@name='Default_ISP2']
+  #
+###    <entry name="Default_ISP2">
+###     <nexthop>
+###      <next-vr>VR-MIL1-ISP2</next-vr>
+###     </nexthop>
+###    <bfd>
+###     <profile>None</profile>
+###    </bfd>
+###    <path-monitor>
+###     <enable>no</enable>
+###     <failure-condition>any</failure-condition>
+###     <hold-time>2</hold-time>
+###    </path-monitor>
+###    <metric>20</metric>
+###    <destination>0.0.0.0/0</destination>
+
+  # check virtual router ISP1 contains requirements
+  - name: vr_isp1_default_route_isp2
+    label: Check virtual-router ISP1 Default_ISP2 contains default route next hop metric 20 interface enabled path mon failure condition
+    test: |
+       (
+       vr_isp1_default_isp2 | element_value_contains('nexthop.next-vr', virtual_router_isp2)  
+       and vr_isp1_default_isp2 | element_value_contains('metric', '20')
+       and vr_isp1_default_isp2 | element_value_contains('destination', '0.0.0.0/0')
+       and vr_isp1_default_isp2 | element_value_contains('path-monitor.enable', 'no')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }}
+                           {{ vr_isp1_default_isp2 }} 
+      
+    pass_message: |
+      Virtual router ISP1 contains default route to Inet: 
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+                           {{ vr_isp1_default_isp2 }}
 
 
 
