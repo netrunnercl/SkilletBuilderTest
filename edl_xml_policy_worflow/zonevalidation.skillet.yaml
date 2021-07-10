@@ -269,7 +269,10 @@ snippets:
        (
        vr_isp1_default_isp1 | element_value_contains('nexthop.ip-address', isp1_nexthop)  
        and vr_isp1_default_isp1 | element_value_contains('metric', '10')
-       and vr_isp1_default_isp1 | element_value_contains('destination', '0.0.0.0/0')       
+       and vr_isp1_default_isp1 | element_value_contains('destination', '0.0.0.0/0')
+       and vr_isp1_default_isp1 | element_value_contains('interface', interface_vr_isp1)      
+       and vr_isp1_default_isp1 | element_value_contains('path-monitor.enable', 'yes')
+       and vr_isp1_default_isp1 | element_value_contains('path-monitor.failure-condition', 'all')
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
