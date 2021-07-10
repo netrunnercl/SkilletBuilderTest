@@ -39,6 +39,11 @@ variables:
     description: Interface on ISP1
     default: ethernet1/1
     type_hint: text
+  # ISP1 Ipv4
+  - name: isp1_ipv4
+    description: ISP1 ipv4
+    default: 217.56.70.190/29
+    type_hint: text
   # ISP1 nexthop
   - name: isp1_nexthop
     description: ISP1 next hop
@@ -305,7 +310,7 @@ snippets:
     label: Check virtual-router ISP1 default ISP route monitor 1
     test: |
        (
-       vr_isp1_default_isp1_monitor1  | element_value_contains('source', interface_vr_isp1)
+       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
        and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '208.67.222.222')
        and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
        ) 
@@ -313,13 +318,13 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ interface_vr_isp1 }}
+      Interface ISP1 {{ isp1_ipv4 }}
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ interface_vr_isp1 }}
+      Interface ISP1 {{ isp1_ipv4 }}
 
 
 
