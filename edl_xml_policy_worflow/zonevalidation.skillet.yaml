@@ -118,9 +118,22 @@ snippets:
       ##### Default route VR-ISP1 Default_ISP2
       - name: vr_isp1_default_isp2
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']
-      ##### Default route VR ISP2
+      ##### Default route VR ISP2 Default_ISP2
       - name: vr_isp2_default_isp2
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']
+      - name: vr_isp2_default_isp2_monitor1
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']/path-monitor/monitor-destinations/entry[@name='OpenDNS1']
+      - name: vr_isp2_default_isp2_monitor2
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']/path-monitor/monitor-destinations/entry[@name='OpenDNS2']
+      - name: vr_isp2_default_isp2_monitor3
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']/path-monitor/monitor-destinations/entry[@name='GoogleDNS1']
+      - name: vr_isp2_default_isp2_monitor4
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']/path-monitor/monitor-destinations/entry[@name='GoogleDNS2']
+      - name: vr_isp2_default_isp2_monitor5
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']/path-monitor/monitor-destinations/entry[@name='CloudFare1']
+      - name: vr_isp2_default_isp2_monitor6
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']/path-monitor/monitor-destinations/entry[@name='CloudFare2']
+      ##### Default route VR-ISP2 Default_ISP1
       - name: vr_isp2_default_isp1
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']
       
@@ -648,3 +661,158 @@ snippets:
       Virtual Router ISP2 : {{ virtual_router_isp2 }} 
       
       VR-ISP2 Default_ISP1: {{ vr_isp2_default_isp1 }}
+
+################################################################################################
+#########################    VR-ISP2 Default_ISP2 monitors    ##################################
+#########################                                     ##################################
+
+  # check virtual router ISP2 default ISP2 monitor 1
+  - name: vr_isp2_default_route2_mon1
+    label: Check virtual-router ISP2 default ISP route monitor 1 OpenDNS1
+    test: |
+       (
+       vr_isp2_default_isp2_monitor1  | element_value_contains('source', isp2_ipv4)
+       and vr_isp2_default_isp2_monitor1 | element_value_contains('enable', 'yes')
+       and vr_isp2_default_isp2_monitor1 | element_value_contains('destination', '208.67.222.222')
+       and vr_isp2_default_isp2_monitor1 | element_value_contains('interval', '3')
+       and vr_isp2_default_isp2_monitor1 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP2 {{ virtual_router_isp2 }} 
+      IPv4 ISP1 {{ isp2_ipv4 }}
+      Monitor 1 OpenDNS1: {{ vr_isp2_default_isp2_monitor1 }}
+
+    pass_message: |
+      Virtual router ISP2 contains default route to Inet: 
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP1 {{ isp2_ipv4 }}
+      Monitor OpenDNS1: {{ vr_isp2_default_isp2_monitor1 }}
+
+  # check virtual router ISP2 default ISP2 monitor 2
+  - name: vr_isp2_default_route2_mon2
+    label: Check virtual-router ISP2 default ISP2 route monitor 2 OpenDNS2
+    test: |
+       (
+       vr_isp2_default_isp2_monitor2  | element_value_contains('source', isp2_ipv4)
+       and vr_isp2_default_isp2_monitor2 | element_value_contains('enable', 'yes')
+       and vr_isp2_default_isp2_monitor2 | element_value_contains('destination', '208.67.220.220')
+       and vr_isp2_default_isp2_monitor2 | element_value_contains('interval', '3')
+       and vr_isp2_default_isp2_monitor2 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP1 {{ isp2_ipv4 }}
+      Monitor 2 OpenDNS2: {{ vr_isp2_default_isp2_monitor2 }}
+
+    pass_message: |
+      Virtual router ISP2 contains default route to Inet: 
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP1 {{ isp2_ipv4 }}
+      Monitor 2 OpenDNS2: {{ vr_isp2_default_isp2_monitor2 }}
+
+  # check virtual router ISP1 default ISP1 monitor 3
+  - name: vr_isp2_default_route2_mon3
+    label: Check virtual-router ISP2 default ISP2 route monitor 3 GoogleDNS1
+    test: |
+       (
+       vr_isp2_default_isp1_monitor3  | element_value_contains('source', isp2_ipv4)
+       and vr_isp2_default_isp2_monitor3 | element_value_contains('enable', 'yes')
+       and vr_isp2_default_isp2_monitor3 | element_value_contains('destination', '8.8.8.8')
+       and vr_isp2_default_isp2_monitor3 | element_value_contains('interval', '3')
+       and vr_isp2_default_isp2_monitor3 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP2 {{ isp2_ipv4 }}
+      Monitor 3 GoogleDNS1: {{ vr_isp2_default_isp2_monitor3 }}
+
+    pass_message: |
+      Virtual router ISP2 contains default route to Inet: 
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP2 {{ isp2_ipv4 }}
+      Monitor 3 GoogleDNS1: {{ vr_isp2_default_isp2_monitor3 }}
+
+  # check virtual router ISP1 default ISP1 monitor 4
+  - name: vr_isp2_default_route2_mon4
+    label: Check virtual-router ISP2 default ISP2 route monitor 4 GoogleDNS2
+    test: |
+       (
+       vr_isp2_default_isp2_monitor4  | element_value_contains('source', isp1_ipv4)
+       and vr_isp2_default_isp2_monitor4 | element_value_contains('enable', 'yes')
+       and vr_isp2_default_isp2_monitor4 | element_value_contains('destination', '8.8.4.4')
+       and vr_isp2_default_isp2_monitor4 | element_value_contains('interval', '3')
+       and vr_isp2_default_isp2_monitor4 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP1 {{ isp2_ipv4 }}
+      Monitor 4 GoogleDNS2: {{ vr_isp2_default_isp2_monitor4 }}
+      
+    pass_message: |
+      Virtual router ISP1 contains default route to Inet: 
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP2 {{ isp2_ipv4 }}
+      Monitor 4 GoogleDNS2: {{ vr_isp2_default_isp2_monitor4 }}
+
+  # check virtual router ISP2 default ISP1 monitor 5
+  - name: vr_isp2_default_route2_mon5
+    label: Check virtual-router ISP2 default ISP2 route monitor 5 CloudFare1
+    test: |
+       (
+       vr_isp2_default_isp2_monitor5  | element_value_contains('source', isp2_ipv4)
+       and vr_isp2_default_isp2_monitor5 | element_value_contains('enable', 'yes')
+       and vr_isp2_default_isp2_monitor5 | element_value_contains('destination', '1.1.1.1')
+       and vr_isp2_default_isp2_monitor5 | element_value_contains('interval', '3')
+       and vr_isp2_default_isp2_monitor5 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP2 {{ isp2_ipv4 }}
+      Monitor 5 CloudFare1: {{ vr_isp2_default_isp2_monitor5 }}
+      
+    pass_message: |
+      Virtual router ISP2 contains default route to Inet: 
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP2 {{ isp2_ipv4 }}
+      Monitor 5 CloudFare1: {{ vr_isp2_default_isp2_monitor5 }}
+
+
+  # check virtual router ISP2 default ISP2 monitor 6
+  - name: vr_isp2_default_route2_mon6
+    label: Check virtual-router ISP2 default ISP2 route monitor 6 CloudFare2
+    test: |
+       (
+       vr_isp2_default_isp2_monitor6  | element_value_contains('source', isp2_ipv4)
+       and vr_isp2_default_isp2_monitor6 | element_value_contains('enable', 'yes')
+       and vr_isp2_default_isp2_monitor6 | element_value_contains('destination', '1.0.0.1')
+       and vr_isp2_default_isp2_monitor6 | element_value_contains('interval', '3')
+       and vr_isp2_default_isp2_monitor6 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+      
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP2 {{ isp2_ipv4 }}
+      Monitor CloudFare2: {{ vr_isp2_default_isp2_monitor6 }}
+
+    pass_message: |
+      Virtual router ISP2 contains default route to Inet: 
+
+      Virtual Router ISP2: {{ virtual_router_isp2 }} 
+      IPv4 ISP2          : {{ isp2_ipv4 }}
+      Monitor CloudFare2: {{ vr_isp2_default_isp2_monitor6 }}
