@@ -84,6 +84,10 @@ snippets:
       ##### Default route VR ISP1
       - name: vr_isp1_default_isp1
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']
+      - name: vr_isp1_default_isp1_monitor1
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']/path-monitor/monitor-destinations/entry[@name='OpenDNS1']
+
+
       - name: vr_isp1_default_isp2
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']
       ##### Default route VR ISP2
@@ -273,7 +277,7 @@ snippets:
        and vr_isp1_default_isp1 | element_value_contains('interface', interface_vr_isp1)      
        and vr_isp1_default_isp1 | element_value_contains('path-monitor.enable', 'yes')
        and vr_isp1_default_isp1 | element_value_contains('path-monitor.failure-condition', 'all')
-       and vr_isp1_default_isp1 | element_value_contains('path-monitor.monitor-destinations.entry[@name='OpenDNS1'].destination', '208.67.222.222')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '208.67.222.222')
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
