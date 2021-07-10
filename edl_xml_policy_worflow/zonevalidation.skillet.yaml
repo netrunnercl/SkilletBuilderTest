@@ -335,12 +335,14 @@ snippets:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
-      
+      Monitor 1 OpenDNS1: {{ vr_isp1_default_isp1_monitor1 }}
+
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
+      Monitor OpenDNS1: {{ vr_isp1_default_isp1_monitor1 }}
 
   # check virtual router ISP1 default ISP1 monitor 2
   - name: vr_isp1_default_route1_mon2
@@ -358,13 +360,14 @@ snippets:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
-      
+      Monitor 2 OpenDNS2: {{ vr_isp1_default_isp1_monitor2 }}
+
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
-
+      Monitor 2 OpenDNS2: {{ vr_isp1_default_isp1_monitor2 }}
 
   # check virtual router ISP1 default ISP1 monitor 3
   - name: vr_isp1_default_route1_mon3
@@ -382,13 +385,14 @@ snippets:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
-      
+      Monitor 3 GoogleDNS1: {{ vr_isp1_default_isp1_monitor3 }}
+
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
-
+      Monitor 3 GoogleDNS1: {{ vr_isp1_default_isp1_monitor3 }}
 
   # check virtual router ISP1 default ISP1 monitor 4
   - name: vr_isp1_default_route1_mon4
@@ -406,13 +410,14 @@ snippets:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
+      Monitor 4 GoogleDNS2: {{ vr_isp1_default_isp1_monitor4 }}
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
-
+      Monitor 4 GoogleDNS2: {{ vr_isp1_default_isp1_monitor4 }}
 
   # check virtual router ISP1 default ISP1 monitor 5
   - name: vr_isp1_default_route1_mon5
@@ -430,12 +435,14 @@ snippets:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
+      Monitor 5 CloudFare1: {{ vr_isp1_default_isp1_monitor5 }}
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
+      Monitor 5 CloudFare1: {{ vr_isp1_default_isp1_monitor5 }}
 
 
   # check virtual router ISP1 default ISP1 monitor 6
@@ -454,12 +461,13 @@ snippets:
       
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
-      
+      Monitor CloudFare2: {{ vr_isp1_default_isp1_monitor6 }}
+
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      IPv4 ISP1 {{ isp1_ipv4 }}
-      {{ vr_isp1_default_isp1_monitor6 }}
-      {{ vr_isp1_default_isp1_monitor6a }}
+      IPv4 ISP1          : {{ isp1_ipv4 }}
+      Monitor CloudFare2: {{ vr_isp1_default_isp1_monitor6 }}
+      
 
