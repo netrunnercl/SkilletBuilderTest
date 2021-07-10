@@ -119,7 +119,11 @@ snippets:
       - name: vr_isp1_default_isp2
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']
       ##### Default route VR ISP2
-
+      - name: vr_isp2_default_isp2
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']
+      - name: vr_isp2_default_isp1
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp2 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']
+      
 
   # simple test using a jinja expression to verify the 'zone_to_test' variable is not in the 'zone_names' test
   - name: ensure_desired_zone_present_from_list
@@ -531,3 +535,67 @@ snippets:
       Monitor CloudFare2: {{ vr_isp1_default_isp1_monitor6 }}
       
 
+################################################################################################
+#########################    VR-ISP2 Default_ISP2 settings    ##################################
+#########################                                     ##################################
+
+
+  # check default ISP routes on VR-ISP2
+  # Default_ISP1 matric 20
+  # Default_ISP2 metric 10
+  # /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='VR-MIL1-ISP2']/routing-table/ip/static-route/entry[@name='Default_ISP2']
+  #
+###    <entry name="Default_ISP2">
+###      <path-monitor>
+###      <monitor-destinations>
+###       <entry name="OpenDNS1">
+###        <enable>yes</enable>
+###        <source>93.39.120.10/29</source>
+###        <destination>5.5.5.5</destination>
+###        <interval>3</interval>
+###        <count>5</count>
+###       </entry>
+
+###       <entry name="OpenDNS2">
+###        <enable>yes</enable>
+###        <source>93.39.120.10/29</source>
+###        <destination>3.3.3.3</destination>
+###        <interval>3</interval>
+###        <count>5</count>
+###       </entry>
+
+###    </monitor-destinations>
+###    <enable>yes</enable>
+###    <failure-condition>any</failure-condition>
+###    <hold-time>2</hold-time>
+###    </path-monitor>
+
+###    <nexthop>
+###     <ip-address>63.247.194.177</ip-address>
+###    </nexthop>
+###    <interface>ethernet1/4</interface>
+###    <metric>10</metric>
+###    <destination>0.0.0.0/0</destination>
+  # check virtual router ISP2 contains requirements
+  - name: vr_isp2_default_route2
+    label: Check virtual-router ISP2 contains default_ISP2 route next hop metric 10 interface enabled path mon failure condition
+    test: |
+       (
+       vr_isp2_default_isp2 | element_value_contains('nexthop.ip-address', isp2_nexthop)  
+       and vr_isp2_default_isp2 | element_value_contains('metric', '10')
+       and vr_isp2_default_isp2 | element_value_contains('destination', '0.0.0.0/0')
+       and vr_isp2_default_isp2 | element_value_contains('interface', interface_vr_isp2)      
+       and vr_isp2_default_isp2 | element_value_contains('path-monitor.enable', 'yes')
+       and vr_isp2_default_isp2 | element_value_contains('path-monitor.failure-condition', 'all')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP1: {{ virtual_router_isp2 }}
+                           {{ vr_isp1_default_isp2 }} 
+      
+    pass_message: |
+      Virtual router ISP1 contains default route to Inet: 
+
+      Virtual Router ISP1: {{ virtual_router_isp2 }} 
+                           {{ vr_isp1_default_isp2 }}
