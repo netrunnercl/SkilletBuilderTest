@@ -264,7 +264,7 @@ snippets:
 ### </entry>  
   # check if default route ISP1 is in the main virtual router
   - name: vr_isp1_default_route
-    label: Check virtual-router ISP1 contains default route and metric 10
+    label: Check virtual-router ISP1 contains default route next hop metric 10 interface enabled path mon failure condition
     test: |
        (
        vr_isp1_default_isp1 | element_value_contains('nexthop.ip-address', isp1_nexthop)  
