@@ -166,15 +166,25 @@ snippets:
 ###  </route-table>
 ###
 ### main_default_isp1
-### main_default_isp1
+### main_default_isp2
 ###
   # check if interfaces are in the right virtual router
   - name: vr_isp1_default_route
-    label: check virtual router isp1 contains route
+    label: check Main virtual router countains default isp1 route
     test: main_default_isp1 | element_value_contains('nexthop.next-vr', virtual_router_isp1)  
     fail_message: |
-      Main Virtual router does not contain default route to ISP1: {{ virtual_router_isp1 }}, {{ interfaces_vr_isp1 }}, {{ virtual_router }}
+      Main Virtual router does not contain default route to ISP1: 
+      {{ virtual_router_isp1 }}, 
+      
+      {{ interfaces_vr_isp1 }}, 
+      
+      {{ virtual_router }}
     pass_message: |
-      Main Virtual router contains default route to ISP1: {{ virtual_router_isp1 }}, {{ interfaces_vr_isp1 }}, {{ virtual_router }}
+      Main Virtual router contains default route to ISP1: 
+      {{ virtual_router_isp1 }}, 
+      
+      {{ interfaces_vr_isp1 }}, 
+      
+      {{ virtual_router }}
 
 
