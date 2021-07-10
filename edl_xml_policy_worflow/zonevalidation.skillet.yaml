@@ -38,7 +38,12 @@ variables:
   - name: interface_vr_isp1
     description: Interface on ISP1
     default: ethernet1/1
-    type_hint: text 
+    type_hint: text
+  # ISP1 nexthop
+  - name: isp1_nexthop
+    description: ISP1 next hop
+    default: 217.56.70.185
+    type_hint: text
   # virtual router ISP2
   - name: virtual_router_isp2
     description: virtual router ISP2 to check
@@ -76,7 +81,12 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_main }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']
       - name: main_default_isp2
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_main }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']
-
+      ##### Default route VR ISP1
+      - name: vr_isp1_default_isp1
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']
+      - name: vr_isp1_default_isp2
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP2']
+      ##### Default route VR ISP2
 
 
   # simple test using a jinja expression to verify the 'zone_to_test' variable is not in the 'zone_names' test
@@ -169,7 +179,7 @@ snippets:
 ### main_default_isp2
 ###
   # check if default route ISP1 is in the main virtual router
-  - name: vr_isp1_default_route
+  - name: vr_main_isp1_default_route
     label: Check Main virtual-router contains default ISP1 route and metric 10
     test: |
        (
@@ -190,7 +200,7 @@ snippets:
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
 
   # check if defaulr route ISP2 is in the main virtual router
-  - name: vr_isp2_default_route
+  - name: vr_main_isp2_default_route
     label: Check Main virtual-router contains default ISP2 route and metric 20
     test: |
        (
@@ -210,4 +220,64 @@ snippets:
 
       Main Virtual Router: {{ virtual_router_main }}
       Virtual Router ISP2: {{ virtual_router_isp2 }} 
+################################################################################
+  # check default ISP routes on VR-ISP1 & VR-ISP2
+  # Default_ISP1
+  # Default_ISP2 metric 20
+  # /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='VR-MIL1-ISP1']/routing-table/ip/static-route/entry[@name='Default_ISP1']
+  #
+### <entry name="Default_ISP1">
+### <path-monitor>
+### <monitor-destinations>
+###  <entry name="OpenDNS1">
+###   <enable>yes</enable>
+###   <source>217.56.70.190/29</source>
+###   <destination>208.67.222.222</destination>
+###   <interval>3</interval>
+###   <count>5</count>
+###  </entry>
+###  <entry name="OpenDNS2">
+###   <enable>yes</enable>
+###   <source>217.56.70.190/29</source>
+###   <destination>208.67.220.220</destination>
+###   <interval>3</interval>
+###   <count>5</count>
+###   </entry>
+### </monitor-destinations>
+### <enable>yes</enable>
+### <failure-condition>all</failure-condition>
+### <hold-time>2</hold-time>
+### </path-monitor>
+###
+### <nexthop>
+###   <ip-address>217.56.70.185</ip-address>
+### </nexthop>
+### <bfd>
+###   <profile>None</profile>
+### </bfd>
+### <interface>ethernet1/1</interface>
+### <metric>10</metric>
+### <destination>0.0.0.0/0</destination>
+### <route-table>
+### <unicast/>
+### </route-table>
+### </entry>  
+  # check if default route ISP1 is in the main virtual router
+  - name: vr_isp1_default_route
+    label: Check virtual-router ISP1 contains default route and metric 10
+    test: |
+       (
+       vr_isp1_default_isp1 | element_value_contains('nexthop.ip-address', isp1_nexthop)  
+       and vr_isp1_default_isp1 | element_value_contains('metric', '10')
+       and vr_isp1_default_isp1 | element_value_contains('destination', '0.0.0.0/0')       
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      
+    pass_message: |
+      Virtual router ISP1 contains default route to Inet: 
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
 
