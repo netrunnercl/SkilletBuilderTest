@@ -345,11 +345,11 @@ snippets:
     label: Check virtual-router ISP1 default ISP route monitor 2
     test: |
        (
-       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '208.67.220.220')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       vr_isp1_default_isp1_monitor2  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor2 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor2 | element_value_contains('destination', '208.67.220.220')
+       and vr_isp1_default_isp1_monitor2 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor2 | element_value_contains('count', '5')
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
@@ -369,11 +369,11 @@ snippets:
     label: Check virtual-router ISP1 default ISP route monitor 3
     test: |
        (
-       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '8.8.8.8')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       vr_isp1_default_isp1_monitor3  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor3 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor3 | element_value_contains('destination', '8.8.8.8')
+       and vr_isp1_default_isp1_monitor3 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor3 | element_value_contains('count', '5')
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
@@ -394,10 +394,10 @@ snippets:
     test: |
        (
        vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '8.8.4.4')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       and vr_isp1_default_isp1_monitor4 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor4 | element_value_contains('destination', '8.8.4.4')
+       and vr_isp1_default_isp1_monitor4 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor4 | element_value_contains('count', '5')
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
@@ -417,11 +417,11 @@ snippets:
     label: Check virtual-router ISP1 default ISP route monitor 5
     test: |
        (
-       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '1.1.1.1')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       vr_isp1_default_isp1_monitor5  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor5 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor5 | element_value_contains('destination', '1.1.1.1')
+       and vr_isp1_default_isp1_monitor5 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor5 | element_value_contains('count', '5')
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
@@ -441,11 +441,11 @@ snippets:
     label: Check virtual-router ISP1 default ISP route monitor 6
     test: |
        (
-       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '1.0.0.1')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
-       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       vr_isp1_default_isp1_monitor6  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor6 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor6 | element_value_contains('destination', '1.0.0.1')
+       and vr_isp1_default_isp1_monitor6 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor6 | element_value_contains('count', '5')
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
