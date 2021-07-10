@@ -681,14 +681,14 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP2 {{ virtual_router_isp2 }} 
-      IPv4 ISP1 {{ isp2_ipv4 }}
+      IPv4 ISP2 {{ isp2_ipv4 }}
       Monitor 1 OpenDNS1: {{ vr_isp2_default_isp2_monitor1 }}
 
     pass_message: |
       Virtual router ISP2 contains default route to Inet: 
 
       Virtual Router ISP2: {{ virtual_router_isp2 }} 
-      IPv4 ISP1 {{ isp2_ipv4 }}
+      IPv4 ISP2 {{ isp2_ipv4 }}
       Monitor OpenDNS1: {{ vr_isp2_default_isp2_monitor1 }}
 
   # check virtual router ISP2 default ISP2 monitor 2
@@ -706,14 +706,14 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP2: {{ virtual_router_isp2 }} 
-      IPv4 ISP1 {{ isp2_ipv4 }}
+      IPv4 ISP2 {{ isp2_ipv4 }}
       Monitor 2 OpenDNS2: {{ vr_isp2_default_isp2_monitor2 }}
 
     pass_message: |
       Virtual router ISP2 contains default route to Inet: 
 
       Virtual Router ISP2: {{ virtual_router_isp2 }} 
-      IPv4 ISP1 {{ isp2_ipv4 }}
+      IPv4 ISP2 {{ isp2_ipv4 }}
       Monitor 2 OpenDNS2: {{ vr_isp2_default_isp2_monitor2 }}
 
   # check virtual router ISP1 default ISP1 monitor 3
@@ -756,7 +756,7 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP2: {{ virtual_router_isp2 }} 
-      IPv4 ISP1 {{ isp2_ipv4 }}
+      IPv4 ISP2 {{ isp2_ipv4 }}
       Monitor 4 GoogleDNS2: {{ vr_isp2_default_isp2_monitor4 }}
       
     pass_message: |
