@@ -113,6 +113,8 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']/path-monitor/monitor-destinations/entry[@name='CloudFare1']
       - name: vr_isp1_default_isp1_monitor6
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']/path-monitor/monitor-destinations/entry[@name='CloudFare2']
+      - name: vr_isp1_default_isp1_monitor6a
+        capture_value: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='{{ virtual_router_isp1 }}']/routing-table/ip/static-route/entry[@name='Default_ISP1']/path-monitor/monitor-destinations/entry[@name='CloudFare2']
 
 
 
@@ -449,7 +451,7 @@ snippets:
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
-
+      
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
       
@@ -458,5 +460,6 @@ snippets:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
-      {{ vr_isp1_default_isp1_monitor6.name }}
+      {{ vr_isp1_default_isp1_monitor6 }}
+      {{ vr_isp1_default_isp1_monitor6a }}
 
