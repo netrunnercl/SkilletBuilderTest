@@ -29,6 +29,7 @@ variables:
     description: virtual router main to check
     default: VR-MIL1
     type_hint: text
+########################## ISP 1 ##############
   # virtual router ISP1
   - name: virtual_router_isp1
     description: virtual router ISP1 to check
@@ -49,6 +50,7 @@ variables:
     description: ISP1 next hop
     default: 217.56.70.185
     type_hint: text
+######################### ISP 2 ##############
   # virtual router ISP2
   - name: virtual_router_isp2
     description: virtual router ISP2 to check
@@ -58,6 +60,16 @@ variables:
   - name: interface_vr_isp2
     description: interface on ISP2
     default: ethernet1/4
+    type_hint: text
+  # ISP2 Ipv4
+  - name: isp2_ipv4
+    description: ISP2 ipv4
+    default: 63.247.194.178/30
+    type_hint: text
+  # ISP2 nexthop
+  - name: isp2_nexthop
+    description: ISP2 next hop
+    default: 63.247.194.177
     type_hint: text
 
 
@@ -311,8 +323,33 @@ snippets:
     test: |
        (
        vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
        and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '208.67.222.222')
        and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
+      
+    pass_message: |
+      Virtual router ISP1 contains default route to Inet: 
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
+
+  # check virtual router ISP1 default ISP1 monitor 2
+  - name: vr_isp1_default_route1_mon2
+    label: Check virtual-router ISP1 default ISP route monitor 2
+    test: |
+       (
+       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '208.67.220.220')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
@@ -327,4 +364,98 @@ snippets:
       Interface ISP1 {{ isp1_ipv4 }}
 
 
+  # check virtual router ISP1 default ISP1 monitor 3
+  - name: vr_isp1_default_route1_mon3
+    label: Check virtual-router ISP1 default ISP route monitor 3
+    test: |
+       (
+       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '8.8.8.8')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
+      
+    pass_message: |
+      Virtual router ISP1 contains default route to Inet: 
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
+
+
+  # check virtual router ISP1 default ISP1 monitor 4
+  - name: vr_isp1_default_route1_mon4
+    label: Check virtual-router ISP1 default ISP route monitor 4
+    test: |
+       (
+       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '8.8.4.4')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
+      
+    pass_message: |
+      Virtual router ISP1 contains default route to Inet: 
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
+
+
+  # check virtual router ISP1 default ISP1 monitor 5
+  - name: vr_isp1_default_route1_mon5
+    label: Check virtual-router ISP1 default ISP route monitor 5
+    test: |
+       (
+       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '1.1.1.1')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
+      
+    pass_message: |
+      Virtual router ISP1 contains default route to Inet: 
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
+
+
+  # check virtual router ISP1 default ISP1 monitor 6
+  - name: vr_isp1_default_route1_mon6
+    label: Check virtual-router ISP1 default ISP route monitor 6
+    test: |
+       (
+       vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('enable', 'yes')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('destination', '1.0.0.1')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('interval', '3')
+       and vr_isp1_default_isp1_monitor1 | element_value_contains('count', '5')
+       ) 
+    fail_message: |
+      Virtual router does not contain default route to Inet:
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
+      
+    pass_message: |
+      Virtual router ISP1 contains default route to Inet: 
+
+      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Interface ISP1 {{ isp1_ipv4 }}
 
