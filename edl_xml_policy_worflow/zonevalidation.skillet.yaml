@@ -721,7 +721,7 @@ snippets:
     label: Check virtual-router ISP2 default ISP2 route monitor 3 GoogleDNS1
     test: |
        (
-       vr_isp2_default_isp1_monitor3  | element_value_contains('source', isp2_ipv4)
+       vr_isp2_default_isp2_monitor3  | element_value_contains('source', isp2_ipv4)
        and vr_isp2_default_isp2_monitor3 | element_value_contains('enable', 'yes')
        and vr_isp2_default_isp2_monitor3 | element_value_contains('destination', '8.8.8.8')
        and vr_isp2_default_isp2_monitor3 | element_value_contains('interval', '3')
@@ -746,7 +746,7 @@ snippets:
     label: Check virtual-router ISP2 default ISP2 route monitor 4 GoogleDNS2
     test: |
        (
-       vr_isp2_default_isp2_monitor4  | element_value_contains('source', isp1_ipv4)
+       vr_isp2_default_isp2_monitor4  | element_value_contains('source', isp2_ipv4)
        and vr_isp2_default_isp2_monitor4 | element_value_contains('enable', 'yes')
        and vr_isp2_default_isp2_monitor4 | element_value_contains('destination', '8.8.4.4')
        and vr_isp2_default_isp2_monitor4 | element_value_contains('interval', '3')
