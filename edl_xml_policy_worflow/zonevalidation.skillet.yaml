@@ -458,4 +458,5 @@ snippets:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
       IPv4 ISP1 {{ isp1_ipv4 }}
+      {{ vr_isp1_default_isp1_monitor6 }}
 
