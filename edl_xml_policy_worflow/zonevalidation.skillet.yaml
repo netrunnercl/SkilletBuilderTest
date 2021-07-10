@@ -2,7 +2,7 @@
 # Example Validation Skillety
 #
 name: example-validate-with-xpath-capture
-label: Standarization Checks for Interfaces, Zones and Virtual routers names in place in double ISP environment.
+label: A skillet standar-validation that Checks for Interfaces, Zones and Virtual routers names in place in double ISP environment.
 
 description: |
   This Skillet validates a firewall standarization on 3 virtual routers, checks interfaces and zones
