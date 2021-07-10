@@ -273,7 +273,7 @@ snippets:
        and vr_isp1_default_isp1 | element_value_contains('interface', interface_vr_isp1)      
        and vr_isp1_default_isp1 | element_value_contains('path-monitor.enable', 'yes')
        and vr_isp1_default_isp1 | element_value_contains('path-monitor.failure-condition', 'all')
-       and vr_isp1_default_isp1 | element_value_contains('path-monitor.monitor-destinations.OpenDNS1.destination', '208.67.222.222')
+       and vr_isp1_default_isp1 | element_value_contains('path-monitor.monitor-destinations.entry[@name='OpenDNS1'].destination', '208.67.222.222')
        ) 
     fail_message: |
       Virtual router does not contain default route to Inet:
