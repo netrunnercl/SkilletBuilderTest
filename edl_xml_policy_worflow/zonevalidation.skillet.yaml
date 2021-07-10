@@ -15,7 +15,7 @@ labels:
     - Validation
 
 variables:
-  # this will allow the user to input a zone name to test
+  # this willy allow the user to input a zone name to test
   - name: zone_to_test
     description: Name of the Zone to test for absence
     default: untrust
