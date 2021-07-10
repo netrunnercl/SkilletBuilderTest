@@ -319,7 +319,7 @@ snippets:
 
   # check virtual router ISP1 default ISP1 monitor 1
   - name: vr_isp1_default_route1_mon1
-    label: Check virtual-router ISP1 default ISP route monitor 1
+    label: Check virtual-router ISP1 default ISP route monitor 1 OpenDNS1
     test: |
        (
        vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
@@ -332,17 +332,17 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
 
   # check virtual router ISP1 default ISP1 monitor 2
   - name: vr_isp1_default_route1_mon2
-    label: Check virtual-router ISP1 default ISP route monitor 2
+    label: Check virtual-router ISP1 default ISP route monitor 2 OpenDNS2
     test: |
        (
        vr_isp1_default_isp1_monitor2  | element_value_contains('source', isp1_ipv4)
@@ -355,18 +355,18 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
 
 
   # check virtual router ISP1 default ISP1 monitor 3
   - name: vr_isp1_default_route1_mon3
-    label: Check virtual-router ISP1 default ISP route monitor 3
+    label: Check virtual-router ISP1 default ISP route monitor 3 GoogleDNS1
     test: |
        (
        vr_isp1_default_isp1_monitor3  | element_value_contains('source', isp1_ipv4)
@@ -379,18 +379,18 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
 
 
   # check virtual router ISP1 default ISP1 monitor 4
   - name: vr_isp1_default_route1_mon4
-    label: Check virtual-router ISP1 default ISP route monitor 4
+    label: Check virtual-router ISP1 default ISP route monitor 4 GoogleDNS2
     test: |
        (
        vr_isp1_default_isp1_monitor1  | element_value_contains('source', isp1_ipv4)
@@ -403,18 +403,18 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
 
 
   # check virtual router ISP1 default ISP1 monitor 5
   - name: vr_isp1_default_route1_mon5
-    label: Check virtual-router ISP1 default ISP route monitor 5
+    label: Check virtual-router ISP1 default ISP route monitor 5 CloudFare1
     test: |
        (
        vr_isp1_default_isp1_monitor5  | element_value_contains('source', isp1_ipv4)
@@ -427,18 +427,18 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
 
 
   # check virtual router ISP1 default ISP1 monitor 6
   - name: vr_isp1_default_route1_mon6
-    label: Check virtual-router ISP1 default ISP route monitor 6
+    label: Check virtual-router ISP1 default ISP route monitor 6 CloudFare2
     test: |
        (
        vr_isp1_default_isp1_monitor6  | element_value_contains('source', isp1_ipv4)
@@ -451,11 +451,11 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-      Interface ISP1 {{ isp1_ipv4 }}
+      IPv4 ISP1 {{ isp1_ipv4 }}
 
