@@ -1,5 +1,5 @@
 #
-# Example Validation Skillet
+# Example Validation Skillety
 #
 name: example-validate-with-xpath-capture
 label: Example of how to use xpath queries to capture specific items of interest.
