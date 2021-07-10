@@ -171,7 +171,12 @@ snippets:
   # check if default route ISP1 is in the main virtual router
   - name: vr_isp1_default_route
     label: check Main virtual router countains default ISP1 route
-    test: main_default_isp1 | element_value_contains('nexthop.next-vr', virtual_router_isp1)  
+    test: |
+       (
+       main_default_isp1 | element_value_contains('nexthop.next-vr', virtual_router_isp1)  
+       and main_default_isp1 | element_value_contains('metric', '10')
+       and main_default_isp1 | element_value_contains('destination', '0.0.0.0/0')       
+       ) 
     fail_message: |
       Main Virtual router does not contain default route to ISP1:
 
@@ -187,7 +192,13 @@ snippets:
   # check if defaulr route ISP2 is in the main virtual router
   - name: vr_isp2_default_route
     label: check Main virtual router countains default ISP2 route
-    test: main_default_isp2 | element_value_contains('nexthop.next-vr', virtual_router_isp2)  
+    test: |
+       (
+       main_default_isp2 | element_value_contains('nexthop.next-vr', virtual_router_isp2)
+       and main_default_isp2 | element_value_contains('metric', '20')
+       and main_default_isp2 | element_value_contains('destination', '0.0.0.0/0')
+       )
+
     fail_message: |
       Main Virtual router does not contain default route to ISP2:
 
