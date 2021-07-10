@@ -212,7 +212,7 @@ snippets:
 ### main_default_isp1
 ### main_default_isp2
 ###
-  # check if default route ISP1 is in the main virtual router
+  # check if default route ISP1 is in the main virtual-router
   - name: vr_main_isp1_default_route
     label: Check Main virtual-router contains default ISP1 route and metric 10
     test: |
@@ -233,7 +233,7 @@ snippets:
       Main Virtual Router: {{ virtual_router_main }}
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
 
-  # check if defaulr route ISP2 is in the main virtual router
+  # check if default route ISP2 is in the main virtual-router
   - name: vr_main_isp2_default_route
     label: Check Main virtual-router contains default ISP2 route and metric 20
     test: |
@@ -254,7 +254,12 @@ snippets:
 
       Main Virtual Router: {{ virtual_router_main }}
       Virtual Router ISP2: {{ virtual_router_isp2 }} 
-################################################################################
+
+################################################################################################
+#########################    VR-ISP1 Default_ISP1 settings    ##################################
+#########################                                     ##################################
+
+
   # check default ISP routes on VR-ISP1 & VR-ISP2
   # Default_ISP1
   # Default_ISP2 metric 20
@@ -312,12 +317,21 @@ snippets:
     fail_message: |
       Virtual router does not contain default route to Inet:
 
-      Virtual Router ISP1: {{ virtual_router_isp1 }} 
+      Virtual Router ISP1: {{ virtual_router_isp1 }}
+                           {{ vr_isp1_default_isp1 }} 
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
+                           {{ vr_isp1_default_isp1 }}
+
+
+
+
+################################################################################################
+#########################    VR-ISP1 Default_ISP1 monitors    ##################################
+#########################                                     ##################################
 
   # check virtual router ISP1 default ISP1 monitor 1
   - name: vr_isp1_default_route1_mon1
