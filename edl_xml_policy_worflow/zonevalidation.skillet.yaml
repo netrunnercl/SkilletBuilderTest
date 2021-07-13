@@ -347,13 +347,13 @@ snippets:
       Virtual router does not contain default route to Inet:
 
       Virtual Router ISP1: {{ virtual_router_isp1 }}
-                           {{ vr_isp1_default_isp1 }} 
+                           {{ vr_isp1_default_isp1 | tojson() }} 
       
     pass_message: |
       Virtual router ISP1 contains default route to Inet: 
 
       Virtual Router ISP1: {{ virtual_router_isp1 }} 
-                           {{ vr_isp1_default_isp1 }}
+                           {{ vr_isp1_default_isp1 | tojson() }}
 
 ################################################################################################
 #########################    VR-ISP1 Default_ISP2 settings    ##################################
@@ -395,14 +395,14 @@ snippets:
 
       Virtual Router ISP1 : {{ virtual_router_isp1 }}
 
-      VR-ISP1 Default_ISP2: {{ vr_isp1_default_isp2 }} 
+      VR-ISP1 Default_ISP2: {{ vr_isp1_default_isp2 | tojson() }} 
       
     pass_message: |
       Virtual router ISP1 contains Default_ISP2 route to next VR: 
 
       Virtual Router ISP1 : {{ virtual_router_isp1 }} 
       
-      VR-ISP1 Default_ISP2: {{ vr_isp1_default_isp2 }}
+      VR-ISP1 Default_ISP2: {{ vr_isp1_default_isp2 | tojson() }}
 
 
 
