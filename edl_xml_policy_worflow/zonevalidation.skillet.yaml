@@ -167,14 +167,14 @@ snippets:
     label: check all 3 virtual routers as main local isp and expereo
     test: |
        (
-       network_vr | attribute_present('entry', 'name', '{{ main_vr }}')
-       and network_vr | attribute_present('entry', 'name', '{{ local_isp_vr }}')
-       and network_vr | attribute_present('entry', 'name', '{{ expereo_isp_vr }}')
+       network_vr | attribute_present('entry', 'name', '{{ virtual_router_main }}')
+       and network_vr | attribute_present('entry', 'name', '{{ virtual_router_isp1 }}')
+       and network_vr | attribute_present('entry', 'name', '{{ {{ virtual_router_isp2 }} }}')
        )
     fail_message: |
-      All three virtual routers required are not present: {{ main_vr }}, {{ local_isp_vr }}, {{ expereo_isp_vr }}
+      All three virtual routers required are not present: {{ virtual_router_main }}, {{ virtual_router_isp1 }}, {{ virtual_router_isp2 }}
     pass_message: |
-      All three virtual routers required are present: {{ main_vr }}, {{ local_isp_vr }}, {{ expereo_isp_vr }}
+      All three virtual routers required are present: {{ virtual_router_main }}, {{ virtual_router_isp1 }}, {{ virtual_router_isp2 }}
     documentation_link: 
 #####################################################################################
   # check if interfaces are in the right virtual router
