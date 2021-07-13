@@ -147,14 +147,14 @@ snippets:
     test: zone_to_test in zone_names
     fail_message: |
       captured values were: 
-      {{ zone_names | tojson() }} 
-      and 
-      {{ interface_with_ip | default('none')| tojson() }}
+      Security Zones list: {{ zone_names | tojson() }} 
+    #  
+    #  {{ interface_with_ip | default('none')| tojson() }}
     pass_message: |
       captured values were: 
-      {{ zone_names | tojson() }} 
-      and 
-      {{ interface_with_ip | default('none')| tojson() }}
+      Security Zones list: {{ zone_names | tojson() }} 
+    #  and 
+    #  {{ interface_with_ip | default('none')| tojson() }}
     # documentation link helps give the user some context about why this test failed or how to manually remediate
     documentation_link: https://github.com/PaloAltoNetworks/skilletlib/blob/develop/docs/source/examples.rst
     
