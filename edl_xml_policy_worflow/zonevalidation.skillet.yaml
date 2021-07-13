@@ -185,28 +185,26 @@ snippets:
     test: interfaces_vr_isp1 | element_value_contains('interface.member', interface_vr_isp1)  
     fail_message: |
       Virtual router ISP1 does not contain Interface ISP1: 
-      {{ interface_vr_isp1 }}, 
-      {{ interfaces_vr_isp1 }}, 
+      Interface: {{ interface_vr_isp1 }} 
+      Interfaces on virtual-router ISP1: {{ interfaces_vr_isp1 }} 
       {{ virtual_router }}
     pass_message: |
       Virtual router ISP contains Interface ISP1: 
-      {{ interface_vr_isp1 }}, 
-      {{ interfaces_vr_isp1 }}, 
+      Interface: {{ interface_vr_isp1 }} 
+      Interfaces on virtual-router ISP1: {{ interfaces_vr_isp1 }} 
       {{ virtual_router }}
-
-
   - name: vr_isp2
     label: check virtual router isp2 contains interface {{ interface_vr_isp2 }}
     test: interfaces_vr_isp2 | element_value_contains('interface.member', interface_vr_isp2)  
     fail_message: |
       Virtual router ISP2 does not contain Interface ISP2: 
-      {{ interface_vr_isp2 }}, 
-      {{ interfaces_vr_isp2 }}, 
+      Interface: {{ interface_vr_isp2 }} 
+      Interfaces on virtual-router ISP2: {{ interfaces_vr_isp2 }} 
       {{ virtual_router }}
     pass_message: |
       Virtual router ISP2 contains Interface ISP2: 
-      {{ interface_vr_isp2 }}, 
-      {{ interfaces_vr_isp2 }}, 
+      Interface: {{ interface_vr_isp2 }} 
+      Interfaces on virtual-router ISP2: {{ interfaces_vr_isp2 }} 
       {{ virtual_router }}
 
 ################################################################################
