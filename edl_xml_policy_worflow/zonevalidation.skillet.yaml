@@ -71,6 +71,78 @@ variables:
     description: ISP2 next hop
     default: 63.247.194.177
     type_hint: text
+######################## PRISMA #############
+  # On Prem IP Range 1 
+  - name: On_Prem_IP_Range_1
+    description: On Prem IP Range 1 
+    default: 10.81.128.0/19
+    type_hint: text
+  # On Prem IP Range 2
+  - name: On_Prem_IP_Range_2
+    description: On_Prem_IP_Range_2
+    default: 10.58.0.0/16
+    type_hint: text
+  # ISP 1 BW
+  - name: ISP_1_BW
+    description: ISP 1 BW 
+    default: 100
+    type_hint: text
+  # ISP 2 BW 
+  - name: ISP_2_BW
+    description: ISP 2 BW 
+    default: 50
+    type_hint: text
+  # On Prem tunnel interface 2001
+  - name: tunnel_interface_2001
+    description: tunnel interface 2001
+    default: 10.81.129.2
+    type_hint: text
+  # On Prem tunnel interface 2002 
+  - name: tunnel_interface_2002
+    description: tunnel interface 2002
+    default: 10.81.129.3
+    type_hint: text
+  # On Prem BGP router 
+  - name: On_Prem_BGP_router
+    description: On Prem BGP router
+    default: 10.81.129.1
+    type_hint: text
+  # On Prem BGP PeerGroup 
+  - name: On_Prem_BGP_PeerGroup
+    description: On Prem BGP PeerGroup 
+    default: IT-MIL1
+    type_hint: text
+  # On Prem BGP AS 
+  - name: On_Prem_BGP_AS
+    description: On Prem BGP AS 
+    default: 64569
+    type_hint: text
+  # Prisma GW Name 
+  - name: Prisma_GW_Name
+    description: Prisma GW Name
+    default: IT-PRI1
+    type_hint: text
+  # Prisma Region 
+  - name: Prisma_Region
+    description: Prisma Region
+    default: italy
+    type_hint: text
+  # Prisma Bandwidth 
+  - name: Prisma_Bandwidth
+    description: Prisma Bandwidth
+    default: 10
+    type_hint: text
+  # Prisma IP 
+  - name: Prisma_IP
+    description: Prisma IP
+    default: 34.99.149.193
+    type_hint: text
+  # Prisma BGP Router 
+  - name: Prisma_BGP_Router
+    description: Prisma_BGP_Router
+    default: 10.254.1.8
+    type_hint: text
+
 
 
 
