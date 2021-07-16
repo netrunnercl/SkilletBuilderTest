@@ -15,7 +15,7 @@ labels:
 
 variables:
   # this willy allow the user to input a zone name to test
-  - name: zone_to_test
+  - name: zone_to_test2
     description: Name of the Security Zone facing Internet AKA Untrust
     default: untrust
     type_hint: text
@@ -212,20 +212,20 @@ snippets:
       
 
   # simple test using a jinja expression to verify the 'zone_to_test' variable is not in the 'zone_names' test
-  - name: ensure_desired_zone_present_from_list
+  - name: ensure_desired_zone_present_from_list2
     # pan_validation skillet have a default cmd of 'validate'
     cmd: validate
     # note here that you can use jinja variable interpolation just about anywhere
     label: Ensures the {{ zone_to_test }} zone is configured
-    test: zone_to_test in zone_names
+    test: zone_to_test2 in zone_names2
     fail_message: |
       captured values were: 
-      Security Zones list: {{ zone_names | tojson() }} 
+      Security Zones list: {{ zone_names2 | tojson() }} 
     #  
     #  {{ interface_with_ip | default('none')| tojson() }}
     pass_message: |
       captured values were: 
-      Security Zones list: {{ zone_names | tojson() }} 
+      Security Zones list: {{ zone_names2 | tojson() }} 
     #  and 
     #  {{ interface_with_ip | default('none')| tojson() }}
     # documentation link helps give the user some context about why this test failed or how to manually remediate
