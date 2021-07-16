@@ -156,7 +156,7 @@ snippets:
       # the '@name' will return only the value of the attribute 'name' from each 'entry'
       #                  /config/template/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone//entry/@name
       - name: zone_names
-        capture_pattern: /config/template/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone//entry/@name
+        capture_pattern: /config/template/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']
       # note here we can combine an advanced xpath query with 'capture_object'. This will capture
       # the full interface definition from the interface that contains the 'ip_to_find' value
       - name: interface_with_ip
