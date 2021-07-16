@@ -155,7 +155,7 @@ snippets:
       # note the use of '//' to select all zones
       # the '@name' will return only the value of the attribute 'name' from each 'entry'
       #                  /config/template/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone//entry/@name
-      - name: zone_names
+      - name: zone_names2
         capture_pattern: /config/template/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']
       # note here we can combine an advanced xpath query with 'capture_object'. This will capture
       # the full interface definition from the interface that contains the 'ip_to_find' value
@@ -216,15 +216,15 @@ snippets:
     # pan_validation skillet have a default cmd of 'validate'
     cmd: validate
     # note here that you can use jinja variable interpolation just about anywhere
-    label: Ensures the {{ zone_to_test }} zone is configured
+    label: Ensures the {{ zone_to_test2 }} zone is configured
     test: zone_to_test2 in zone_names2
     fail_message: |
-      captured values were: 
+      captured values were: {{ zone_to_test2 }}
       Security Zones list: {{ zone_names2 | tojson() }} 
     #  
     #  {{ interface_with_ip | default('none')| tojson() }}
     pass_message: |
-      captured values were: 
+      captured values were: {{ zone_to_test2 }}
       Security Zones list: {{ zone_names2 | tojson() }} 
     #  and 
     #  {{ interface_with_ip | default('none')| tojson() }}
